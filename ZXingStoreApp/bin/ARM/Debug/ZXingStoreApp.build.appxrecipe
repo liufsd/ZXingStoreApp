@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>EUSOFT</Machine>
+    <WindowsUser>eusoft1</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|ARM</SolutionConfiguration>
+    <PackageArchitecture>arm</PackageArchitecture>
+    <PackageIdentityName>3ccf47ba-8d4f-4ecf-817e-3605d614a29e</PackageIdentityName>
+    <IntermediateOutputPath>D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\obj\ARM\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\ZXingStoreApp.exe">
+      <PackagePath>ZXingStoreApp.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\packages\ZXing.Net.0.14.0.1\lib\wpa81\ZXing.winmd">
+      <PackagePath>ZXing.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\TestZXing.png">
+      <PackagePath>Assets\TestZXing.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\ZXingStoreApp.xr.xml">
+      <PackagePath>ZXingStoreApp.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\bin\ARM\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
