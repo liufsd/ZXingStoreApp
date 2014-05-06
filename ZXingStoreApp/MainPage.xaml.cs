@@ -38,6 +38,7 @@ namespace ZXingStoreApp
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
         }
 
         /// <summary>
@@ -77,13 +78,13 @@ namespace ZXingStoreApp
                 }
                 await _mediaCapture.InitializeAsync(settings);
                 SetResolution();
-                //set flash close
-                _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
                 VideoCapture.Source = _mediaCapture;
                 try
                 {
                     //should update CurrentOrientation
                     _mediaCapture.SetPreviewRotation(VideoRotationLookup(DisplayProperties.CurrentOrientation, false));
+                    //set flash close
+                    _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
                 }
                 catch (Exception e)
                 {

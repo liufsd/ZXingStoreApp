@@ -1,1 +1,1 @@
-D:\DevDocuments\work\localTest\ZXingStoreApp\ZXingStoreApp\ZXingStoreApp.csproj;arm
+D:\DevDocuments\work\OpenSource\ZXingStoreApp\ZXingStoreApp\ZXingStoreApp.csproj;arm

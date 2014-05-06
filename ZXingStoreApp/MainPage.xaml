@@ -15,7 +15,7 @@
                 Width="600" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center">
-            <CaptureElement x:Name="VideoCapture" Width="480" Height="640" />
+            <CaptureElement x:Name="VideoCapture" Stretch="UniformToFill"  />
             <Image x:Name="CaptureImage" Width="480" Height="640" Visibility="Collapsed" />
         </Canvas>
         <TextBlock x:Name="Error" VerticalAlignment="Bottom" FontSize="32" Width="480" TextAlignment="Center" Margin="0,400,0,37" />
