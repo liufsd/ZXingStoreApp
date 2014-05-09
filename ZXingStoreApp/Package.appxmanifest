@@ -30,6 +30,9 @@
     <Capability Name="videosLibrary" />
     <Capability Name="removableStorage" />
     <Capability Name="picturesLibrary" />
+    <Capability Name="musicLibrary" />
+    <m3:Capability Name="appointments" />
+    <Capability Name="enterpriseAuthentication" />
     <DeviceCapability Name="webcam" />
   </Capabilities>
 </Package>

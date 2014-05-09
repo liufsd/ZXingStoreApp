@@ -48,7 +48,7 @@ namespace ZXingStoreApp
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            EnumerateWebcamsAsync();
+            //EnumerateWebcamsAsync();
         }
 
         /// <summary>
@@ -59,14 +59,22 @@ namespace ZXingStoreApp
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Windows.Graphics.Display.DisplayProperties.OrientationChanged += DisplayProperties_OrientationChanged;
-            InitCameraPreviewAction();
+        //    InitCameraPreviewAction();
+            TestTransImageAction();
+        }
+
+        private async void TestTransImageAction()
+        {
+            var file = await KnownFolders.PicturesLibrary.GetFileAsync("scan.jpg");
+
+            var photoStorageFile = ReencodePhotoAsync(file, PhotoRotationLookup(Windows.Graphics.Display.DisplayProperties.CurrentOrientation, true)).Result;
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             Windows.Graphics.Display.DisplayProperties.OrientationChanged -= DisplayProperties_OrientationChanged;
-            try
-            {
+           // try
+            /*{
                 _navBack = true;
                 VideoCapture.Visibility = Visibility.Collapsed;
                 await _mediaCapture.StopPreviewAsync();
@@ -75,7 +83,7 @@ namespace ZXingStoreApp
             catch (Exception exception)
             {
                 App.WpLog(exception);
-            }
+            }*/
         }
         private async void EnumerateWebcamsAsync()
         {
@@ -97,7 +105,7 @@ namespace ZXingStoreApp
                         var devInfo = m_devInfoCollection[i];
                         EnumedDeviceList2.Items.Add(devInfo.Name);
                     }
-                    EnumedDeviceList2.SelectedIndex = 0;
+                    EnumedDeviceList2.SelectedIndex = 1;
                     // ShowStatusMessage("Enumerating Webcams completed successfully.");
                 }
             }
@@ -150,13 +158,14 @@ namespace ZXingStoreApp
                 }
                 await _mediaCapture.InitializeAsync(settings);
                 SetResolution();
-                //set flash close
-                _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
+               
                 VideoCapture.Source = _mediaCapture;
                 try
                 {
                     //should update CurrentOrientation
                     _mediaCapture.SetPreviewRotation(VideoRotationLookup(DisplayProperties.CurrentOrientation, false));
+                    //set flash close
+                    _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
                 }
                 catch (Exception e)
                 {
@@ -209,43 +218,53 @@ namespace ZXingStoreApp
             Windows.Storage.Streams.IRandomAccessStream inputStream = null;
             Windows.Storage.Streams.IRandomAccessStream outputStream = null;
             Windows.Storage.StorageFile photoStorage = null;
-
-            try
-            {
-                inputStream = await tempStorageFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
-
-                var decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(inputStream);
-
-                photoStorage = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFileAsync("scan.jpg", Windows.Storage.CreationCollisionOption.GenerateUniqueName);
-
-                outputStream = await photoStorage.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite);
-
-                outputStream.Size = 0;
-
-                var encoder = await Windows.Graphics.Imaging.BitmapEncoder.CreateForTranscodingAsync(outputStream, decoder);
-
-                var properties = new Windows.Graphics.Imaging.BitmapPropertySet();
-                properties.Add("System.Photo.Orientation",
-                    new Windows.Graphics.Imaging.BitmapTypedValue(photoRotation, Windows.Foundation.PropertyType.UInt16));
-
-                await encoder.BitmapProperties.SetPropertiesAsync(properties);
-
-                await encoder.FlushAsync();
-            }
-            finally
-            {
-                if (inputStream != null)
+                var task = new Task(async () =>
                 {
-                    inputStream.Dispose();
-                }
+                    try
+                    {
+                        inputStream = await tempStorageFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
 
-                if (outputStream != null)
-                {
-                    outputStream.Dispose();
-                }
+                        var decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(inputStream);
 
-                var asyncAction = tempStorageFile.DeleteAsync(Windows.Storage.StorageDeleteOption.PermanentDelete);
-            }
+                        photoStorage =
+                            await
+                                Windows.Storage.KnownFolders.PicturesLibrary.CreateFileAsync("scan_sv_sv.jpg",
+                                    Windows.Storage.CreationCollisionOption.GenerateUniqueName);
+
+                        outputStream = await photoStorage.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite);
+
+                        outputStream.Size = 0;
+
+                        var encoder =
+                            await
+                                Windows.Graphics.Imaging.BitmapEncoder.CreateForTranscodingAsync(outputStream, decoder);
+
+                        var properties = new Windows.Graphics.Imaging.BitmapPropertySet();
+                        properties.Add("System.Photo.Orientation",
+                            new Windows.Graphics.Imaging.BitmapTypedValue(photoRotation,
+                                Windows.Foundation.PropertyType.UInt16));
+
+                        await encoder.BitmapProperties.SetPropertiesAsync(properties);
+
+                        await encoder.FlushAsync();
+                    }
+                    finally
+                    {
+                        if (inputStream != null)
+                        {
+                            inputStream.Dispose();
+                        }
+
+                        if (outputStream != null)
+                        {
+                            outputStream.Dispose();
+                        }
+
+                        var asyncAction =
+                            tempStorageFile.DeleteAsync(Windows.Storage.StorageDeleteOption.PermanentDelete);
+                    }
+                });
+                task.Start();
 
             return photoStorage;
         }

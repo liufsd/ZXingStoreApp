@@ -20,6 +20,7 @@
         </Canvas>
         <TextBlock x:Name="Error" VerticalAlignment="Bottom" FontSize="32" Width="480" TextAlignment="Center" Margin="0,400,0,37" />
         <TextBlock x:Name="ScanResult" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="32" Width="480"/>
+        <ListView x:Name="EnumedDeviceList2"></ListView>
     </Grid>
 </Page>
 
